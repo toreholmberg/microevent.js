@@ -30,6 +30,13 @@ MicroEvent.prototype	= {
 	}
 };
 
+/*
+ * Aliases
+ */
+MicroEvent.prototype.on = MicroEvent.prototype.bind;
+MicroEvent.prototype.off = MicroEvent.prototype.unbind;
+MicroEvent.prototype.emit = MicroEvent.prototype.trigger;
+
 /**
  * mixin will delegate all MicroEvent.js function in the destination object
  *
@@ -38,7 +45,7 @@ MicroEvent.prototype	= {
  * @param {Object} the object which will support MicroEvent
 */
 MicroEvent.mixin	= function(destObject){
-	var props	= ['bind', 'unbind', 'trigger', 'on', 'off', 'emit'];
+	var props	= ['bind', 'unbind', 'trigger'];
 	for(var i = 0; i < props.length; i ++){
 		if( typeof destObject === 'function' ){
 			destObject.prototype[props[i]]	= MicroEvent.prototype[props[i]];
